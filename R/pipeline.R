@@ -9,8 +9,6 @@ library(spacyr)
 library(reticulate)
 library(lubridate)
 
-# if does not exist
-
 debug <- FALSE
 should_delete_chunks <- FALSE
 decades <- c(1870, 1880, 1890, 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020)
@@ -61,7 +59,7 @@ operating_system <- Sys.info()["sysname"]
 if(operating_system == "Windows") {
   #use_python("C:/Users/steph/AppData/Local/R/cache/R/reticulate/uv/cache/archive-v0/CVOhsXrYEbrjpDEIQ24Ag/Scripts/python.exe", required = TRUE)
   spacy_initialize(model = "en_core_web_sm", refresh_settings = TRUE)
-  plan(multisession, workers = 22) }
+  plan(multisession, workers = 20) }
 
 if(operating_system == "Linux") {
   spacy_initialize(model = "en_core_web_sm", refresh_settings = TRUE)
@@ -74,7 +72,12 @@ for (f in file_list) {
   print(paste0("Number of Workers (Cores): ", nbrOfWorkers()))
   decade_subset <- read_parquet(f) 
   current_decade <- str_extract(f, "\\d{4}")
-  process(decade_subset, current_decade, num_chunks = 1760, operating_system) } 
+  process(decade_subset, current_decade, num_chunks = 800, operating_system) 
+  
+  # Add backfill here
+  # Right now, not using it -- but add here if want to use 
+  
+  } 
 
 source("R/bind_data.R")
 
