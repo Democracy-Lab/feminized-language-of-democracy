@@ -1,4 +1,4 @@
-# Text Mine Congress
+# Feminized Language of Democracy
 
 ## Collect the United States Congressional Records
 Before running any scripts in this repository, you must collect the daily Congressional Record data:
