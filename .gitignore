@@ -1,0 +1,8 @@
+# Ignore any folder whose name starts with "data"
+data*/
+*/data*/
+
+# Ignore all .out files
+*.out
+
+__pycache__/
